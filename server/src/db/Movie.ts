@@ -2,8 +2,7 @@ import {Entity, Column, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
 export class Movie {
-
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     id: number;
 
     @Column({
@@ -11,11 +10,11 @@ export class Movie {
     })
     name: string;
 
-    @Column()
-    public types: string;
+    @Column("simple-array")
+    public types: string[];
 
-    @Column()
-    public areas: string;
+    @Column("simple-array")
+    public areas: string[];
 
     @Column()
     public timeLong: number;

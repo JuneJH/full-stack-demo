@@ -1,5 +1,6 @@
-import {ArrayMinSize, IsArray, IsInt, isNotEmpty, IsNotEmpty, Max, Min} from "class-validator"
-import {Type} from "class-transformer";
+import {ArrayMinSize, IsArray, IsInt, validate, IsNotEmpty, Max, Min} from "class-validator"
+import {plainToClass, Type} from "class-transformer";
+
 export class Movie {
     @IsNotEmpty({message:"电影名称不能为空"})
     @Type(()=>String)
@@ -32,9 +33,27 @@ export class Movie {
     @Type(()=>Boolean)
     public isClassic: boolean = false;
 
-    @Type(()=>Boolean)
+    @Type(()=>String)
     public description?: string;
 
-    @Type(()=>Boolean)
+    @Type(()=>String)
     public poster?: string;
+
+    public async  validator():Promise<string[]>{
+        const result = await  validate(this);
+        const re = result.map(ele=>{
+            if(ele.constraints){
+                return Object.values(ele.constraints);
+            }
+            return []
+        })
+        return  re.flat(2);
+    };
+    public static plainToMovie(obj:Object):Movie{
+        if(obj instanceof Movie){
+            return obj;
+        }
+        return  plainToClass(Movie,obj);
+
+    }
 }
