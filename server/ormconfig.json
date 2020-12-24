@@ -1,0 +1,13 @@
+{
+  "type": "mysql",
+  "host": "121.36.51.141",
+  "port": 3306,
+  "username": "root",
+  "password": "root",
+  "database": "movie",
+  "entities": [
+    "src/entities/*{.js,.ts}"
+  ],
+  "synchronize": true,
+  "logging": false
+}

@@ -1,4 +1,11 @@
 import "reflect-metadata";
-import "./db/db";
-import { MovieService} from "./service/movieService";
+import {MovieService} from "./service/movieService";
 
+
+const m: any = {};
+m.name = "修改电影名字";
+
+
+MovieService.find().then(data => {
+    console.log("index.js", data)
+})
