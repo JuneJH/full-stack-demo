@@ -1,11 +1,16 @@
 import "reflect-metadata";
-import {MovieService} from "./service/movieService";
+import * as express from "express";
+import router from "./api/movie";
+import init from "./db";
 
-
-const m: any = {};
-m.name = "修改电影名字";
-
-
-MovieService.find().then(data => {
-    console.log("index.js", data)
+init().then(connection=>{
+    console.log("database link")
 })
+const app = express();
+
+app.use(express.json());
+
+app.use("/api/movie",router)
+
+
+app.listen(9527,(() => console.log(`Server listening`)))
