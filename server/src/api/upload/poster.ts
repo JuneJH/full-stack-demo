@@ -19,23 +19,26 @@ const upload = multer({
     storage: storage, limits: {
         fileSize: 1024 * 1000
     },
-    fileFilter:(req,file,cb)=>{
+    fileFilter: (req, file, cb) => {
         const extname = path.extname(file.originalname);
-        if(allow.includes(extname)) {
+        if (allow.includes(extname)) {
             cb(null, true);
-        }else{
+        } else {
             cb(new Error("不支持上传该类型文件"))
         }
     }
-})
+}).single("poster");
+
 const router4upload = express.Router();
 
-router4upload.post("/", upload.single("poster"), (req, res, next) => {
-    ResponseEntity.success(res,200,"/upload/" + req.file.filename)
-    console.log(req.file)
-
-
-
-})
+router4upload.post("/", (req, res, next) => {
+    upload(req, res, function (err) {
+        if (err instanceof multer.MulterError || err) {
+            ResponseEntity.error(res, 400, err);
+        } else {
+            ResponseEntity.success(res, 200, "/upload/" + req.file.filename)
+        }
+    });
+});
 
 export default router4upload
