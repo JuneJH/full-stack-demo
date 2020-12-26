@@ -31,7 +31,7 @@ const upload = multer({
 
 const router4upload = express.Router();
 
-router4upload.post("/", (req, res, next) => {
+router4upload.post("/", (req, res) => {
     upload(req, res, function (err) {
         if (err instanceof multer.MulterError || err) {
             ResponseEntity.error(res, 400, err);
