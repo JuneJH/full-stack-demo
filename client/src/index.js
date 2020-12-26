@@ -3,6 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import MovieApi from "./api/MovieApi";
+
+MovieApi.add({
+    name:"新世界",
+    areas:["韩国"],
+    types:["喜剧","搞笑"],
+    isHot:true,
+    isClassic:true,
+    isComing:true,
+    timeLong:123,
+    description:"黄正在",
+    poster:"123"
+}).then(data=>{console.log(data)})
 
 ReactDOM.render(
   <React.StrictMode>
