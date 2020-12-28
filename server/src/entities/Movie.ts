@@ -51,11 +51,11 @@ export class Movie extends Base {
 
     @Column()
     @Type(() => String)
-    public description?: string;
+    public description: string = "";
 
     @Column()
     @Type(() => String)
-    public poster?: string;
+    public poster: string = "";
 
 
     /**
