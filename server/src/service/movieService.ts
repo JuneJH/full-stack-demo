@@ -42,6 +42,7 @@ export class MovieService {
 
     public static async find(option: Object): Promise<{ data: Movie[], total: number } | string[]> {
         const query: SearchParams = SearchParams.plainToEntity(option);
+        query.skip = query.page * query.take;
         const isError = await query.validator();
         if (isError.length != 0) {
             return isError;
