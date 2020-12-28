@@ -1,4 +1,4 @@
 export interface SearchParams{
-    skip:number
+    page:number
     take:number
 }
