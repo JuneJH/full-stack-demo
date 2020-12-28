@@ -23,21 +23,31 @@ router.get("/:id", async (req, res, next) => {
 })
 
 router.patch("/:id", async (req, res, next) => {
-    const result = await MovieService.edit(req.body,req.params.id);;
-    if (Array.isArray(result)) {
-        ResponseEntity.error(res, 400, result);
-        return;
+    try{
+        const result = await MovieService.edit(req.body,req.params.id);
+        if (Array.isArray(result)) {
+            ResponseEntity.error(res, 400, result);
+            return;
+        }
+        ResponseEntity.success(res, 200, result);
+    }catch (err){
+        ResponseEntity.error(res, 500, err.name);
     }
-    ResponseEntity.success(res, 200, result);
+
 })
 
 router.post("/", async (req, res, next) => {
-    const result = await MovieService.add(req.body);
-    if (Array.isArray(result)) {
-        ResponseEntity.error(res, 400, result);
-        return;
+    try{
+        const result = await MovieService.add(req.body);
+        if (Array.isArray(result)) {
+            ResponseEntity.error(res, 400, result);
+            return;
+        }
+        ResponseEntity.success(res, 200, result);
+    }catch (err){
+        ResponseEntity.error(res, 500, err.name);
     }
-    ResponseEntity.success(res, 200, result);
+
 })
 router.delete("/:id",async (req,res,next) => {
     const result = await MovieService.delete(req.params.id);

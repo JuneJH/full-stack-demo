@@ -1,7 +1,7 @@
 import axios from "axios";
 import {SearchParams} from "../commonType/SearchParams";
 import {ResponseSucceedPageType} from "../commonType/ResponseType";
-import {Movie} from "../commonType/Movie";
+import {Movie, MovieEdit} from "../commonType/Movie";
 
 export default class MovieApi {
 
@@ -9,12 +9,12 @@ export default class MovieApi {
         const {data} = await axios.post("/api/movie", movie);
         return data;
     }
-    public static async edit(id:string,movie:Movie){
-        const {data} = await axios.patch("/api/movie"+id, movie);
+    public static async edit(id:string,movie:MovieEdit){
+        const {data} = await axios.patch("/api/movie/"+id, movie);
         return data;
     }
     public static async delete(id:string){
-        const {data} = await axios.delete("/api/movie"+id);
+        const {data} = await axios.delete("/api/movie/"+id);
         return data;
     }
 
