@@ -1,18 +1,16 @@
 import React from 'react';
-import MovieApi from "./api/MovieApi"
-import {Movie} from "./commonType/Movie";
+import {movieActions} from "./redux/action/movieAction"
+import {store} from "./redux/store";
 
-
-const m ={
-
-
-}
-MovieApi.edit("97afbf78-04a3-4b94-b0fa-3fd15670f776",m).then(r => console.log("修改结果",r))
+console.log("初始化",store.getState())
+store.subscribe(() => console.log(store.getState()));
+store.dispatch(movieActions.setCondition({page: 100, take: 20}));
+store.dispatch(movieActions.setLoading(true));
 function App() {
 
   return (
     <div>
-        hellow word
+        hello word
     </div>
   );
 }
