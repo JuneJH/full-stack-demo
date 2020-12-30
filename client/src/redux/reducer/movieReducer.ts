@@ -1,7 +1,8 @@
 import {IMovie} from "./movieType";
-import {TActionsMovie} from "../action/movieAction";
+import {movieActions, TActionsMovie} from "../action/movieAction";
 import {Movie} from "../../commonType/Movie";
 import {SearchParams} from "../../commonType/SearchParams";
+import MovieApi from "../../api/MovieApi";
 
 
 const defaultState: IMovie = {
@@ -40,6 +41,13 @@ function setLoading(state:IMovie,isLoading:boolean):IMovie{
     return {
         ...state,
         isLoading,
+    }
+}
+
+function fetchMovies(){
+    return async (dispatch:any,getState:any)=>{
+        const result = await MovieApi.find();
+        dispatch(movieActions.saveMovie(result.data));
     }
 }
 
