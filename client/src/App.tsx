@@ -1,18 +1,18 @@
 import React from 'react';
 import {movieActions} from "./redux/action/movieAction"
 import {store} from "./redux/store";
+import {Layout} from "./page/Layout";
+import {BrowserRouter, Route} from "react-router-dom";
 
-console.log("初始化",store.getState())
-store.subscribe(() => console.log(store.getState()));
-store.dispatch(movieActions.setCondition({page: 100, take: 20}));
-store.dispatch(movieActions.setLoading(true));
-function App() {
+store.dispatch(movieActions.fetchMovie({take:2,page:2})).then(data=> {
 
-  return (
-    <div>
-        hello word
-    </div>
-  );
+});
+
+const App:React.FC = ()=>{
+    return (<BrowserRouter>
+        <Route path="/" component={Layout}/>
+    </BrowserRouter>);
 }
+
 
 export default App;

@@ -7,5 +7,6 @@ export interface IMovie {
     data: Movie[],
     total: number,
     isLoading: boolean,
-    condition: SearchRequire
+    condition: SearchRequire,
+    totalPage:number
 }

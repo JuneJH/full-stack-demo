@@ -1,7 +1,9 @@
 import {Movie} from "../../commonType/Movie";
 import {IAction} from "./actionType";
 import {SearchParams} from "../../commonType/SearchParams";
-
+import {ThunkAction} from "redux-thunk";
+import {IMovie} from "../reducer/movieType"
+import MovieApi from "../../api/MovieApi";
 
 type  TSaveActionType = IAction<"save_movies", Movie[]>
 
@@ -30,6 +32,15 @@ function setLoading(isLoading: boolean): TSetLoading {
     }
 }
 
+type TSetTotal = IAction<"set_total", number>
+
+function setTotal(total: number): TSetTotal {
+    return {
+        type: "set_total",
+        payload: total,
+    }
+}
+
 type TDeleteAction = IAction<"delete_movie", string>
 
 function deleteMovie(id: string): TDeleteAction {
@@ -39,11 +50,38 @@ function deleteMovie(id: string): TDeleteAction {
     }
 }
 
-export type TActionsMovie = TDeleteAction | TSetLoading | TSetConditionType | TSaveActionType;
+function fetchMovie(condition: SearchParams):ThunkAction<Promise<void>,IMovie,any,TActionsMovie>{
+    return async (dispatch,getstate)=>{
+        dispatch(setLoading(true));
+        dispatch(setCondition(condition))
+        const state = getstate();
+        const result =await MovieApi.find(state.condition);
+        dispatch(saveMovie(result.data));
+        dispatch(setTotal(result.total));
+        dispatch(setLoading(false));
+    }
+}
+
+function deleteFetchMovie(id: string):ThunkAction<Promise<void>,IMovie,any,TActionsMovie>{
+    return  async dispatch=>{
+        dispatch(setLoading(true));
+        const result = await MovieApi.delete(id);
+        if(result.data){
+            dispatch(deleteMovie(id))
+        }
+        dispatch(setLoading(false));
+    }
+
+}
+
+export type TActionsMovie = TDeleteAction | TSetLoading | TSetConditionType | TSaveActionType | TSetTotal;
 
 export const movieActions = {
     deleteMovie,
     setLoading,
     setCondition,
-    saveMovie
+    saveMovie,
+    setTotal,
+    fetchMovie,
+    deleteFetchMovie
 }
