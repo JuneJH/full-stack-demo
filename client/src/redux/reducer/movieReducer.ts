@@ -1,7 +1,8 @@
 import {IMovie} from "./movieType";
 import {TActionsMovie} from "../action/movieAction";
-import {Movie} from "../../commonType/Movie";
+import {Movie, MovieEdit} from "../../commonType/Movie";
 import {SearchParams} from "../../commonType/SearchParams";
+import {MovieSwitchValue} from "../../components/MovieTable";
 
 
 const defaultState: IMovie = {
@@ -31,6 +32,20 @@ function saveMovie(state: IMovie, movies: Movie[]) {
     }
 }
 
+function editMovie(state:IMovie,payload:{movie:MovieEdit,id:string}):IMovie{
+    const copyData = [...state.data];
+    const newData = copyData.map(item=>{
+        if(item.id === payload.id){
+            return {...item,...payload.movie};
+        }
+        return  item;
+    })
+    return{
+        ...state,
+        data:newData
+    }
+}
+
 function setCondition(state: IMovie, condition:SearchParams):IMovie{
     return {
         ...state,
@@ -57,6 +72,25 @@ function setTotal(state:IMovie,total:number):IMovie{
     }
 }
 
+function switchChange(state:IMovie,payload:{type:MovieSwitchValue,value:boolean,id:string}){
+    const movie = state.data.find(value => value.id === payload.id);
+    if(!movie){
+        return state;
+    }
+    const copyState = {...state};
+    const newData = copyState.data.map(item=>{
+        if(item.id === payload.id){
+            item[payload.type] = payload.value;
+        }
+        return item;
+    })
+    return {
+        ...state,
+        data:newData,
+    }
+
+}
+
 export default function movieReducer(state: IMovie = defaultState, action: TActionsMovie): IMovie {
 
     switch (action.type) {
@@ -64,12 +98,16 @@ export default function movieReducer(state: IMovie = defaultState, action: TActi
             return deleteMovie(state,action.payload);
         case "save_movies":
             return saveMovie(state,action.payload);
+        case "edit_movies":
+            return editMovie(state, action.payload);
         case "set_condition":
             return setCondition(state,action.payload);
         case "set_loading":
             return setLoading(state, action.payload);
         case "set_total":
             return setTotal(state, action.payload);
+        case "switch_movie":
+            return switchChange(state, action.payload);
         default :
             return state;
     }
