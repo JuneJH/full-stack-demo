@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink, Route} from "react-router-dom";
 import {Add} from "../page/movie/Add";
-import {List} from "../page/movie/List";
+import List from "../page/movie/List";
 import "../style/layout.css"
 
 import {Layout,Menu} from 'antd';
