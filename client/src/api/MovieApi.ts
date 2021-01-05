@@ -1,6 +1,6 @@
 import axios from "axios";
 import {SearchParams} from "../commonType/SearchParams";
-import {ResponseSucceedPageType} from "../commonType/ResponseType";
+import {ResponseErrorType, ResponseSucceedPageType, ResponseSucceedType} from "../commonType/ResponseType";
 import {Movie, MovieEdit} from "../commonType/Movie";
 
 export default class MovieApi {
@@ -22,6 +22,10 @@ export default class MovieApi {
         const {data} = await axios.get("/api/movie", {
             params: search
         });
+        return data;
+    }
+    public static async uploadPoster(formData:any):Promise<ResponseSucceedType<string> | ResponseErrorType<string> >{
+        const {data} = await axios.post("/api/upload", formData);
         return data;
     }
 };

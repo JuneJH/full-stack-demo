@@ -6,6 +6,7 @@ import "../style/layout.css"
 
 import {Layout,Menu} from 'antd';
 import {Edit} from "./movie/edit";
+import Home from "./Home";
 
 const {Header, Sider, Content} = Layout;
 
@@ -27,6 +28,7 @@ const LayoutContainer: React.FC = () => {
                     </Sider>
                     <Content>
                        <div className="content">
+                           <Route path="/" exact component={Home}/>
                            <Route path="/list" component={List}/>
                            <Route path="/add" component={Add}/>
                            <Route path="/edit" component={Edit}/>
