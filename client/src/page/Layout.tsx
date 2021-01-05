@@ -5,6 +5,7 @@ import List from "../page/movie/List";
 import "../style/layout.css"
 
 import {Layout,Menu} from 'antd';
+import {Edit} from "./movie/edit";
 
 const {Header, Sider, Content} = Layout;
 
@@ -21,13 +22,14 @@ const LayoutContainer: React.FC = () => {
                         theme={"dark"}
                         inlineIndent={30}>
                             <Menu.Item><NavLink to="/list" exact={true}>列表</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to="/Add" exact>添加</NavLink></Menu.Item>
+                            <Menu.Item><NavLink to="/add" exact>添加</NavLink></Menu.Item>
                         </Menu>
                     </Sider>
                     <Content>
                        <div className="content">
                            <Route path="/list" component={List}/>
-                           <Route path="/Add" component={Add}/>
+                           <Route path="/add" component={Add}/>
+                           <Route path="/edit" component={Edit}/>
                        </div>
                     </Content>
                 </Layout>

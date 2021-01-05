@@ -12,8 +12,18 @@ function mapStateToProps(state:IMovie){
 function mapStateToEvent(dispatch:Dispatch<any>):MovieTableEvent{
     return {
         onSwitchChange(type,value,id){
-            console.log("run")
             dispatch(movieActions.fetchMovieSwitch(type, value, id));
+        },
+        onDelete(id:string){
+           return new Promise<any>(resolve => {
+               resolve( dispatch(movieActions.deleteFetchMovie(id)))
+           })
+        },
+        onLoad(){
+            dispatch(movieActions.fetchMovie({take:10,page:1}))
+        },
+        onChangePage(page,pageSize){
+            dispatch(movieActions.fetchMovie({page,take:pageSize}))
         }
     }
 
