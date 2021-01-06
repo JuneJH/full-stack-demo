@@ -6,7 +6,7 @@ import "../style/layout.css"
 import {BarChartOutlined, FileAddOutlined} from '@ant-design/icons';
 
 import {Layout,Menu} from 'antd';
-import {Edit} from "./movie/edit";
+import Edit from "./movie/edit";
 import Home from "./Home";
 import {RouteComponentProps} from "react-router";
 
@@ -34,7 +34,7 @@ const LayoutContainer: React.FC<RouteComponentProps> = (props) => {
                             <Route path="/" exact component={Home}/>
                             <Route path="/list" exact component={List}/>
                             <Route path="/add" exact component={Add}/>
-                            <Route path="/edit" exact component={Edit}/>
+                            <Route path="/edit/:id" exact component={Edit}/>
                         </div>
                     </Content>
                 </Layout>

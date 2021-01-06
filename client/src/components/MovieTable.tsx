@@ -113,7 +113,7 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
             dataIndex: "id",
             render: text => {
                 return (<>
-                    <NavLink to="/edit">
+                    <NavLink to={"/edit/" + text}>
                         <Button type="primary" size="small" style={{fontSize: 12, marginRight: 10}}>编辑</Button>
                     </NavLink>
                     <Button type="primary" danger size="small" style={{fontSize: 12}}

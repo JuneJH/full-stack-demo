@@ -24,6 +24,12 @@ export default class MovieApi {
         });
         return data;
     }
+
+    public static async findById(id:string):Promise<ResponseSucceedPageType<Movie>>{
+        const {data} = await axios.get("/api/movie/"+id);
+        return data;
+    }
+
     public static async uploadPoster(formData:any):Promise<ResponseSucceedType<string> | ResponseErrorType<string> >{
         const {data} = await axios.post("/api/upload", formData);
         return data;
