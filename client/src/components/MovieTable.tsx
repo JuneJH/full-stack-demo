@@ -15,7 +15,7 @@ export interface MovieTableEvent {
     onSwitchChange: (type: MovieSwitchValue, value: boolean, id: string) => void,
     onDelete: (id: string) => Promise<void>,
     onLoad: () => void,
-    onChangePage: (newPage: number,pageSize: number) => void
+    onChangePage: (newPage: number, pageSize: number) => void
 }
 
 type TState = {
@@ -45,7 +45,6 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
         return [{
             dataIndex: "poster",
             title: "封面",
-            key: "poster",
             render: text => {
                 return <Image
                     width={70}
@@ -55,18 +54,17 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
         }, {
             title: "名称",
             dataIndex: "name",
-            key: "name",
+            ellipsis:true,
         }, {
-            dataIndex:"areas",
+            dataIndex: "areas",
             title: "地区",
-            key: "areas",
+            ellipsis:true,
             render: (text: []) => {
                 return text.join(", ")
             },
         }, {
             dataIndex: "isClassic",
             title: "是否经典",
-            key: "isClassic",
             render: (text, movie) => {
                 return (<Switch checked={text} onChange={(checked, event) => {
                     this.props.onSwitchChange(MovieSwitchValue.isClassic, checked, movie.id as string);
@@ -75,7 +73,6 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
         }, {
             dataIndex: "isComing",
             title: "正在上映",
-            key: "isComing",
             render: (text, movie) => {
                 return (<Switch checked={text} onChange={(checked) => {
                     this.props.onSwitchChange(MovieSwitchValue.isComing, checked, movie.id as string);
@@ -84,7 +81,6 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
         }, {
             dataIndex: "isHot",
             title: "是否热门",
-            key: "isHot",
             render: (text, movie) => {
                 return (<Switch checked={text} onChange={checked => {
                     this.props.onSwitchChange(MovieSwitchValue.isHot, checked, movie.id as string);
@@ -93,20 +89,19 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
         }, {
             dataIndex: "timeLong",
             title: "时长",
-            key: "timeLong",
             render: (text) => {
                 return `${text}分钟`
             }
         }, {
             dataIndex: "types",
             title: "电影类型",
-            key: "types",
+            ellipsis:true,
             render: (text: []) => {
                 return text.join(", ")
             }
         }, {
             dataIndex: "description",
-            key: "description",
+            ellipsis:true,
             title: "描述"
         }, {
             title: "操作",
@@ -134,17 +129,18 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
             <>
                 <Table dataSource={this.props.data} columns={this.getColumns()}
                        loading={this.props.isLoading}
-                       sticky={{offsetHeader:0}}
+                       sticky={{offsetHeader: 0}}
                        size="small"
+                       rowKey="id"
                        pagination={{
                            current: this.props.condition.page,
                            pageSize: this.props.condition.take,
                            total: this.props.total,
-                           pageSizeOptions:['2','5','10','20'],
-                           showSizeChanger:true,
-                           defaultPageSize:this.props.condition.take,
-                           onChange:(page:number,pageSize?:number)=>{
-                               this.props.onChangePage(page,pageSize!);
+                           pageSizeOptions: ['2', '5', '10', '20'],
+                           showSizeChanger: true,
+                           defaultPageSize: this.props.condition.take,
+                           onChange: (page: number, pageSize?: number) => {
+                               this.props.onChangePage(page, pageSize!);
                            }
                        }}
 
@@ -176,7 +172,7 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
                         })
                     }}
                 >
-                    <p style={{color:"red"}}>确定删除？</p>
+                    <p style={{color: "red"}}>确定删除？</p>
                 </Modal>
             </>
         );

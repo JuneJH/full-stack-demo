@@ -16,7 +16,8 @@ const Edit: React.FC<RouteComponentProps<IEditProps>> = (props) => {
                 setMovies(data.data);
             }
         })
-    }, [])
+        // eslint-disable-next-line
+    },[])
 
     return (<div>
         <MovieForm

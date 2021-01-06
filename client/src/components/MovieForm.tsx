@@ -31,9 +31,9 @@ class MovieForm extends Component<IMovieFormProps & RouteComponentProps> {
         return (
             <Form
                 ref={this.formRef}
-                labelCol={{span: 4, offset: 0}}
+                labelCol={{span: 6, offset: 0}}
                 wrapperCol={{span: 18, offset: 1}}
-                style={{width: 400}}
+                style={{width: 400,padding:"2em"}}
                 onFinish={async (value) => {
                     const result = await this.props.onChange(value);
                     if(result.length === 0){

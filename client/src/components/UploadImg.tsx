@@ -28,6 +28,7 @@ export default class UploadImg extends Component<IUploadProps, IUploadState> {
         }
         return [];
     }
+
     private getUploadBtn() {
         if (!this.props.value) {
             return (<div>
@@ -54,7 +55,7 @@ export default class UploadImg extends Component<IUploadProps, IUploadState> {
                 name="poster"
                 onPreview={this.handlePreview.bind(this)}
                 onRemove={() => {
-                    if(this.props.onChange){
+                    if (this.props.onChange) {
                         this.props.onChange("")
                     }
                 }}
@@ -65,7 +66,7 @@ export default class UploadImg extends Component<IUploadProps, IUploadState> {
                     if (result.err) {
                         message.error('上传失败,请重试');
                     } else {
-                        if(this.props.onChange){
+                        if (this.props.onChange) {
                             this.props.onChange(result.data)
                         }
                     }

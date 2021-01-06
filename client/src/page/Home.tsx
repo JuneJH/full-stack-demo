@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Upload from "../components/UploadImg"
 
 class Home extends Component {
     state={
@@ -7,11 +6,7 @@ class Home extends Component {
     }
     render() {
         return (
-            <div>
-                <Upload value={this.state.value} onChange={(url)=>{
-                    this.setState({...this.state, value:url})
-                }}/>
-            </div>
+                <h1>欢迎使用</h1>
         );
     }
 }
