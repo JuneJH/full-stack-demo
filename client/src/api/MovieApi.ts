@@ -25,7 +25,7 @@ export default class MovieApi {
         return data;
     }
 
-    public static async findById(id:string):Promise<ResponseSucceedPageType<Movie>>{
+    public static async findById(id:string):Promise<ResponseSucceedType<Movie>| ResponseErrorType<string>>{
         const {data} = await axios.get("/api/movie/"+id);
         return data;
     }
