@@ -5,7 +5,7 @@ import {Movie, MovieEdit} from "../commonType/Movie";
 
 export default class MovieApi {
 
-    public static async add(movie:Movie){
+    public static async add(movie:Movie):Promise<ResponseSucceedType<Movie>|ResponseErrorType<[]>>{
         const {data} = await axios.post("/api/movie", movie);
         return data;
     }

@@ -5,8 +5,8 @@ import {PlusOutlined} from '@ant-design/icons';
 import MovieApi from "../api/MovieApi";
 
 interface IUploadProps {
-    value: string,
-    onChange: (url: string) => void
+    value?: string,
+    onChange?: (url: string) => void
 }
 
 interface IUploadState {
@@ -55,7 +55,9 @@ export default class UploadImg extends Component<IUploadProps, IUploadState> {
                 name="poster"
                 onPreview={this.handlePreview.bind(this)}
                 onRemove={() => {
-                    this.props.onChange("")
+                    if(this.props.onChange){
+                        this.props.onChange("")
+                    }
                 }}
                 customRequest={async (item) => {
                     const form = new FormData();
@@ -64,7 +66,9 @@ export default class UploadImg extends Component<IUploadProps, IUploadState> {
                     if (result.err) {
                         message.error('上传失败,请重试');
                     } else {
-                        this.props.onChange(result.data)
+                        if(this.props.onChange){
+                            this.props.onChange(result.data)
+                        }
                     }
                 }}
             >

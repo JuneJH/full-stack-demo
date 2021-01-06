@@ -1,7 +1,15 @@
 import React from 'react';
+import MovieForm from "../../components/MovieForm";
+import MovieApi from "../../api/MovieApi";
 
 export const Add: React.FC = () => {
     return (<div>
-        add
+        <MovieForm onChange={async (movie)=>{
+            const result = await MovieApi.add(movie);
+            if(result.data){
+                return []
+            }
+            return result.err;
+        }}/>
     </div>)
 }
