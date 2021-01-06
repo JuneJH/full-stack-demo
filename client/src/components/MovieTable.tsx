@@ -57,9 +57,12 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
             dataIndex: "name",
             key: "name",
         }, {
-            dataIndex: "areas",
+            dataIndex:"areas",
             title: "地区",
             key: "areas",
+            render: (text: []) => {
+                return text.join(", ")
+            },
         }, {
             dataIndex: "isClassic",
             title: "是否经典",
@@ -98,7 +101,7 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
             dataIndex: "types",
             title: "电影类型",
             key: "types",
-            render: (text: Movie[]) => {
+            render: (text: []) => {
                 return text.join(", ")
             }
         }, {

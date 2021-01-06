@@ -28,7 +28,6 @@ export default class UploadImg extends Component<IUploadProps, IUploadState> {
         }
         return [];
     }
-
     private getUploadBtn() {
         if (!this.props.value) {
             return (<div>

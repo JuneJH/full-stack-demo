@@ -76,6 +76,7 @@ class MovieForm extends Component<IMovieFormProps & RouteComponentProps> {
                 <Form.Item
                     label="时长"
                     name="timeLong"
+                    rules={[{required: true, message: '电影时长不能为空'}]}
                 >
                     <InputNumber min={1} max={999}/>
                 </Form.Item>
