@@ -64,3 +64,77 @@
 ### 客户端
 
 > 客户端使用官方脚手架、目录结构略
+
+
+## 开发
+
+> [使用`typeORM`操作数据库](https://typeorm.biunav.com/zh/)]
+> 
+> TypeORM 支持 Active Record 和 Data Mapper 模式，这意味着你可以以最高效的方式编写高质量的、松耦合的、可扩展的、可维护的应用程序。
+> 
+> 使用`mysql`数据库
+
+1. 连接数据库
+
+```js
+
+    import {createConnection} from "typeorm";
+    import {Movie} from "../entities/Movie"
+    async function init(){
+        const result = await createConnection({
+            type: "mysql",
+            host: "",
+            port: 3306,
+            username: "",
+            password: "",
+            database: "",
+            entities:[Movie]
+        });
+        return result;
+    }
+    
+```
+
+> `express`框架搭建后端服务器
+> 
+> 
+> 
+>
+
+
+2. 入口文件
+
+```js
+    
+    import "reflect-metadata";
+    import * as express from "express";
+    import router from "./api/movie";
+    import router4upload from "./api/upload/poster"
+    import init from "./db";
+    import * as path from "path";
+    import * as history from "connect-history-api-fallback";
+    
+    init().then(connection=>{
+        console.log("database link")
+    })
+    const app = express();
+    app.use(history());
+    app.use("/",express.static(path.resolve(__dirname, "./public/build")));
+    app.use(express.static(path.resolve(__dirname, "./public")));
+    
+    app.use(express.json());
+    
+    app.use("/api/movie", router);
+    app.use("/api/upload", router4upload);
+    
+    
+    app.listen(9527,(() => console.log(`Server listening`)));
+
+```
+
+3. 前端
+
+> `react`、`redux`、`react-router`、`antd`
+
+
+- 供之后全栈参考
