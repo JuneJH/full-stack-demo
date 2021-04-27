@@ -1,13 +1,9 @@
 import {createConnection} from "typeorm";
 import {Movie} from "../entities/Movie"
+import dbConfig from '../../dbConfig'
 async function init(){
     const result = await createConnection({
-        type: "mysql",
-        host: "",
-        port: 3306,
-        username: "",
-        password: "",
-        database: "",
+        ...dbConfig,
         entities:[Movie]
     });
     return result;
