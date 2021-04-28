@@ -20,13 +20,11 @@ export interface MovieTableEvent {
 type TState = {
     deleteModel: boolean,
     deleteMovieId: string,
-    deleteLoading: boolean,
 }
 
 export default class MovieTable extends React.Component<any & MovieTableEvent, TState> {
     state = {
         deleteModel: false,
-        deleteLoading: false,
         deleteMovieId: "",
     }
 
@@ -151,20 +149,13 @@ export default class MovieTable extends React.Component<any & MovieTableEvent, T
                     okText="确定"
                     okType="danger"
                     visible={this.state.deleteModel}
-                    onOk={async () => {
+                    onOk={ () => {
+                        this.props.onDelete(this.state.deleteMovieId)
                         this.setState({
-                            ...this.state,
-                            deleteLoading: true,
+                            deleteModel: !this.state.deleteModel,
                         })
-                        await this.deleteMovie();
-                        this.setState({
-                            ...this.state,
-                            deleteLoading: false,
-                            deleteModel: false,
-                            deleteMovieId: "",
-                        })
-                    }}
-                    confirmLoading={this.state.deleteLoading}
+                      }}
+                    confirmLoading={this.props.deleteLoading}
                     onCancel={() => {
                         this.setState({
                             ...this.state,

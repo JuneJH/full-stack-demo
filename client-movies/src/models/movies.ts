@@ -47,6 +47,10 @@ export default {
                 return true;
             }
             return false;
+        },
+        *deleteMovie(action:any,saga:any):any{
+            const result = yield saga.call(MovieApi.delete,action.payloay);
+            yield saga.put({type:"fetchData"})
         }
     }
     
