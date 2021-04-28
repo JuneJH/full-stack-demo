@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function edit$id() {
+export default function add() {
     return (
         <div>
-            详情页
+                添加
         </div>
     )
 }
