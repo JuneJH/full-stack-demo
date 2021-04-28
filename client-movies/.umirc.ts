@@ -14,11 +14,6 @@ export default defineConfig({
       // 'pathRewrite': { '^/api' : '' },
     },
   },
-  routes: [
-    {
-
-    }
-  ],
   
   fastRefresh: {},
 });

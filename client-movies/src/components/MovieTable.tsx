@@ -124,6 +124,7 @@ export default class MovieTable extends React.Component<any & MovieTableEvent, T
     }
 
     render() {
+        console.log("表格渲染",this.props)
         return (
             <>
                 <Table dataSource={this.props.data} columns={this.getColumns()}
