@@ -2,7 +2,8 @@ import React, {useLayoutEffect, useState} from 'react';
 import {RouteComponentProps, withRouter} from "react-router";
 import MovieForm from "../../components/MovieForm";
 import {Movie, MovieEdit} from "../../commonType/Movie";
-import MovieApi from '@/services/MovieApi';
+import MovieApi from '../../../services/MovieApi'
+
 
 interface IEditProps {
     id: string

@@ -1,6 +1,5 @@
 import {Table, Switch, Image, Button, Modal} from 'antd';
 import React from "react";
-import {IMovie} from "../redux/reducer/movieType";
 import {ColumnsType} from "antd/lib/table";
 import {Movie} from "../commonType/Movie";
 import {NavLink} from "react-router-dom"
@@ -24,7 +23,7 @@ type TState = {
     deleteLoading: boolean,
 }
 
-export default class MovieTable extends React.Component<IMovie & MovieTableEvent, TState> {
+export default class MovieTable extends React.Component<any & MovieTableEvent, TState> {
     state = {
         deleteModel: false,
         deleteLoading: false,
@@ -130,7 +129,7 @@ export default class MovieTable extends React.Component<IMovie & MovieTableEvent
                 <Table dataSource={this.props.data} columns={this.getColumns()}
                        loading={this.props.isLoading}
                        sticky={{offsetHeader: 0}}
-                       size="small"
+                       size="small" 
                        rowKey="id"
                        pagination={{
                            current: this.props.condition.page,

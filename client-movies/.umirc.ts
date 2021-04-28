@@ -4,12 +4,21 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  dva:{
+    
+  },
   proxy:{
     '/api': {
-      'target': 'http://127.0.0.1:9527',
+      'target': 'http://121.36.51.141:1997/',
       'changeOrigin': true,
-      'pathRewrite': { '^/api' : '' },
+      // 'pathRewrite': { '^/api' : '' },
     },
   },
+  routes: [
+    {
+
+    }
+  ],
+  
   fastRefresh: {},
 });

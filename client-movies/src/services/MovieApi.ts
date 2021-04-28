@@ -1,7 +1,7 @@
 import axios from "axios";
-import {SearchParams} from "../commonType/SearchParams";
-import {ResponseErrorType, ResponseSucceedPageType, ResponseSucceedType} from "../commonType/ResponseType";
-import {Movie, MovieEdit} from "../commonType/Movie";
+import {ResponseErrorType, ResponseSucceedPageType, ResponseSucceedType} from "@/commonType/ResponseType";
+import {Movie, MovieEdit} from "@/commonType/Movie";
+import { SearchParams } from "@/commonType/SearchParams";
 
 export default class MovieApi {
 

@@ -2,7 +2,7 @@ import {Component} from "react";
 import {message, Modal, Upload} from "antd";
 import {UploadFile} from "antd/lib/upload/interface";
 import {PlusOutlined} from '@ant-design/icons';
-import MovieApi from "../services/MovieApi";
+import MovieApi from '../../services/MovieApi'
 
 interface IUploadProps {
     value?: string,

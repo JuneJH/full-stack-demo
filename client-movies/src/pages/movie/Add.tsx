@@ -1,7 +1,6 @@
-import MovieApi from '@/services/MovieApi';
 import React from 'react';
 import MovieForm from "../../components/MovieForm";
-
+import MovieApi from '../../../services/MovieApi'
 export const Add: React.FC = () => {
     return (<div>
         <MovieForm onChange={async (movie)=>{
