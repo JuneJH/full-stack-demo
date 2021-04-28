@@ -7,6 +7,7 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
+import { Link } from 'umi';
 
 const { Header, Sider, Content } = Layout;
 
@@ -28,7 +29,7 @@ export default class SiderDemo extends React.Component {
           <div className="logo" style={{height:60}}>后台管理系统</div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<UserOutlined />}>
-              电影列表
+              <Link to="/movie/list">电影列表</Link>
             </Menu.Item>
             <Menu.Item key="2" icon={<VideoCameraOutlined />}>
               添加电影
