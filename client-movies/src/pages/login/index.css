@@ -1,0 +1,17 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginContainer{
+    width: 400px;
+    height: 300px;
+}
+.loginContainer h1{
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+}

@@ -11,7 +11,7 @@ import { Link } from 'umi';
 
 const { Header, Sider, Content } = Layout;
 
-export default class SiderDemo extends React.Component {
+export default class SiderDemo extends React.Component<any> {
   state = {
     collapsed: false,
   };
@@ -23,6 +23,7 @@ export default class SiderDemo extends React.Component {
   };
 
   render() {
+    if(this.props.location.pathname === "/login") return this.props.children;
     return (
       <Layout style={{height:"100%"}}>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
