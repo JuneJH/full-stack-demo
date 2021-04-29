@@ -3,7 +3,7 @@ import React from "react";
 import {ColumnsType} from "antd/lib/table";
 import {Movie} from "../commonType/Movie";
 import {NavLink} from "react-router-dom"
-
+import style from './index.less'
 export enum MovieSwitchValue {
     isHot = "isHot",
     isComing = "isComing",
@@ -122,20 +122,17 @@ export default class MovieTable extends React.Component<any & MovieTableEvent, T
     }
 
     render() {
-        console.log("表格渲染",this.props)
         return (
             <>
                 <Table dataSource={this.props.data} columns={this.getColumns()}
                        loading={this.props.isLoading}
-                       sticky={{offsetHeader: 0}}
-                       size="small" 
+                       scroll={{y:"calc(100vh - 220px)",scrollToFirstRowOnChange:true,}}
                        rowKey="id"
                        pagination={{
                            current: this.props.condition.page,
+                           size:"default",
                            pageSize: this.props.condition.take,
                            total: this.props.total,
-                           pageSizeOptions: ['2', '5', '10', '20'],
-                           showSizeChanger: true,
                            defaultPageSize: this.props.condition.take,
                            onChange: (page: number, pageSize?: number) => {
                                this.props.onChangePage(page, pageSize!);

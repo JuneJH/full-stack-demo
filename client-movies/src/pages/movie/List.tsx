@@ -1,6 +1,7 @@
 import React from 'react'
 import MovieTable from '@/components/MovieTable'
 import {connect} from 'dva';
+import style from './index.less'
 const mapPrpos = (state:any)=>{
     return {
         data:state.movies.data,
@@ -20,7 +21,7 @@ const mapDispatch = (dispatch:any)=>{
 const Table = connect(mapPrpos,mapDispatch)(MovieTable);
 export default function List() {
     return (
-       <div>
+       <div className={style.container}>
             <Table/>
        </div>
     )

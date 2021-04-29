@@ -51,8 +51,7 @@ export default class SiderDemo extends React.Component<any> {
           <Content
             className="site-layout-background"
             style={{
-              margin: '24px 16px',
-              padding: 24,
+              padding: 15,
               minHeight: 280,
             }}
           >
