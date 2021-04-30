@@ -1,10 +1,10 @@
 import React from 'react'
 import { Layout, Menu ,Row,Col,Button} from 'antd';
 import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
+  AppstoreAddOutlined,
   VideoCameraOutlined,
   UploadOutlined,
+  LogoutOutlined
 } from '@ant-design/icons';
 import { Link,history } from 'umi';
 import style from './index.less'
@@ -37,7 +37,9 @@ export default class SiderDemo extends React.Component<any> {
               <Col>
                 <Button type="link" style={{color:"inherit"}} onClick={()=>{
                   history.push("/login")
-                }}>退出</Button>
+                }}>
+                  <LogoutOutlined />
+                </Button>
               </Col>
             </Row>
           </div>
@@ -49,7 +51,7 @@ export default class SiderDemo extends React.Component<any> {
             <Menu.Item key="/movie/list" icon={<VideoCameraOutlined />}>
               <Link to="/movie/list">电影列表</Link>
             </Menu.Item>
-            <Menu.Item key="/movie/add" icon={<VideoCameraOutlined />}>
+            <Menu.Item key="/movie/add" icon={<AppstoreAddOutlined /> }>
                <Link to="/movie/add">添加电影</Link>
             </Menu.Item>
             <Menu.Item key="3" icon={<UploadOutlined />}>
