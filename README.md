@@ -135,6 +135,7 @@
 3. 前端
 
 > `react`、`redux`、`react-router`、`antd`
+> umijs =>client-movies
 
 
 - 供之后全栈参考
