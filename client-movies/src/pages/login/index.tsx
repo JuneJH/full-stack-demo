@@ -1,14 +1,14 @@
 import React from "react";
 import style from "./index.css";
-import { Form, Input, Button} from "antd";
-import {history} from 'umi'
+import { Form, Input, Button,message} from "antd";
+import {history,connect} from 'umi'
 const layout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 20 },
 };
-export default function Login() {
+function Login(props:any) {
     const onFinish = (values:any)=>{
-        history.push("/")
+       props.onLogin({...values})
     }
   return (
     <div className={style.container}>
@@ -38,4 +38,21 @@ export default function Login() {
       </div>
     </div>
   );
+};
+
+const mapProps = (state:any)=>{
+  return {}
 }
+const mapDispatch = (dispatch:any)=>{
+  return {
+    async onLogin(login:any){
+      const result =await dispatch({type:"login/login",payloay:{...login}});
+      if(result){
+        history.push("/")
+      }else{
+        message.error("用户名或者密码错误")
+      }
+    }
+  }
+}
+export default connect(mapProps,mapDispatch)(Login)

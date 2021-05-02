@@ -31,10 +31,13 @@ const mapDispatch = (dispatch:any)=>{
     }
 }
 const Table = connect(mapPrpos,mapDispatch)(MovieTable);
-export default function List() {
+function List() {
     return (
        <div className={style.container}>
             <Table/>
        </div>
     )
 }
+List.use = ["@/components/Auto"]
+
+export default List;

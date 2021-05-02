@@ -24,7 +24,6 @@ export default class SiderDemo extends React.Component<any> {
 
   render() {
     const pathname = this.props.location.pathname
-    console.log(pathname)
     if(pathname === "/login") return this.props.children;
     return (
       <Layout style={{height:"100%"}}>

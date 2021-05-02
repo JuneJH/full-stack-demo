@@ -2,12 +2,22 @@ export default {
     state:null,
     reducers:{
         logout(state:any,aciton:any){
-            return aciton.payloay;
+            window.sessionStorage.removeItem("token")
+            return null;
+        },
+        setToken(state:any,aciton:any){
+            return aciton.payloay
         }
     },
     effects:{
-        login(aciton:any,saga:any):any{
+        *login({payloay:{username,password}}:any,saga:any):any{
             // 处理登陆的事情
+            if(username === "2019" && password === "123"){
+                yield saga.put({type:"setToken",payloay:"token"});
+                window.sessionStorage.setItem("token","token123");
+                return true;
+            }
+            return false;
         }
     }
 }
