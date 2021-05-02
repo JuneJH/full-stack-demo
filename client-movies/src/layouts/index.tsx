@@ -6,12 +6,12 @@ import {
   UploadOutlined,
   LogoutOutlined
 } from '@ant-design/icons';
-import { Link,history } from 'umi';
+import { Link,history, connect } from 'umi';
 import style from './index.less'
 
 const { Header, Sider, Content } = Layout;
 
-export default class SiderDemo extends React.Component<any> {
+ class SiderDemo extends React.Component<any> {
   state = {
     collapsed: false,
   };
@@ -36,7 +36,8 @@ export default class SiderDemo extends React.Component<any> {
               </Col>
               <Col>
                 <Button type="link" style={{color:"inherit"}} onClick={()=>{
-                  history.push("/login")
+                  this.props.onLogout();
+                  history.push("/login");
                 }}>
                   <LogoutOutlined />
                 </Button>
@@ -73,3 +74,13 @@ export default class SiderDemo extends React.Component<any> {
     );
   }
 }
+const mapDipatch = (dispatch:any)=>{
+  return {
+    onLogout(){
+      dispatch({
+        type:"login/logout"
+      })
+    }
+  }
+}
+export default connect(undefined,mapDipatch)(SiderDemo)
