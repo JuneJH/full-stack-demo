@@ -3,7 +3,6 @@ import MovieTable from '@/components/MovieTable'
 import {connect} from 'dva';
 import style from './index.less'
 const mapPrpos = (state:any)=>{
-    console.log(state)
     return {
         data:state.movies.data,
         total:state.movies.total,

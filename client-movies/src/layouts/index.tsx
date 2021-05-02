@@ -24,6 +24,7 @@ export default class SiderDemo extends React.Component<any> {
 
   render() {
     const pathname = this.props.location.pathname
+    console.log(pathname)
     if(pathname === "/login") return this.props.children;
     return (
       <Layout style={{height:"100%"}}>
@@ -47,7 +48,7 @@ export default class SiderDemo extends React.Component<any> {
        
         <Layout className="site-layout">
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={[pathname]}>
+          <Menu theme="dark" mode="inline" selectedKeys={[pathname]}>
             <Menu.Item key="/movie/list" icon={<VideoCameraOutlined />}>
               <Link to="/movie/list">电影列表</Link>
             </Menu.Item>
