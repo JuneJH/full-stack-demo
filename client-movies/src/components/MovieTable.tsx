@@ -29,15 +29,8 @@ export default class MovieTable extends React.Component<any & MovieTableEvent, T
     }
 
     componentDidMount() {
-        if (this.props.onLoad) {
-            this.props.onLoad();
-        }
+        this.props.onFeatch();
     }
-
-    private async deleteMovie() {
-        return await this.props.onDelete(this.state.deleteMovieId);
-    }
-
     private getColumns(): ColumnsType<Movie> {
         return [{
             dataIndex: "poster",

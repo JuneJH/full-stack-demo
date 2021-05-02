@@ -9,14 +9,6 @@ export default {
         total: 0,
         totalPage: 0,
     },
-    subscriptions:{
-        fetch({dispatch}:any){
-            dispatch({
-                type:"fetchData"
-            })
-
-        }
-    },
     reducers:{
         changeCondition(state:any,action:any){
             return {
@@ -37,7 +29,7 @@ export default {
     },
     effects:{
         *fetchData(action:any,saga:any):any{
-            const condition = yield saga.select((state:any)=>state.condition);
+            const condition = yield saga.select((state:any)=>state.movies.condition);
             const result = yield saga.call(MovieApi.find,condition)
             if(result.code == 200){
                 yield saga.put({type:"setData",payloay:{
@@ -50,6 +42,11 @@ export default {
         },
         *deleteMovie(action:any,saga:any):any{
             const result = yield saga.call(MovieApi.delete,action.payloay);
+            yield saga.put({type:"fetchData"})
+        },
+        *editMovie({payloay:{type,id,value}}:any,saga:any):any{
+            const movies = yield saga.select((state:any)=> state.movies.data.find((item:any)=>item.id === id));
+            const result = yield saga.call(MovieApi.edit,id,{...movies,[type]:value});
             yield saga.put({type:"fetchData"})
         }
     }
