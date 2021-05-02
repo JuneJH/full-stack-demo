@@ -1,7 +1,16 @@
-import {history} from "umi"
+import {history,connect} from "umi"
 
-export default function (props:any){
-console.log("run  atou ")
+function Auto(props:any){
+    if(!props.token){
+        history.push("/login");
+        return null;
+    }
     return props.children;
-    history.push("/login")
+    
 }
+const mapProps = (state:any)=>{
+    return {
+        token:state.login
+    }
+}
+export default connect(mapProps)(Auto)

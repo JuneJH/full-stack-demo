@@ -38,6 +38,6 @@ function List() {
        </div>
     )
 }
-List.use = ["@/components/Auto"]
+List.wrappers = ["@/components/Auto"]
 
 export default List;

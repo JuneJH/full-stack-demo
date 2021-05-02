@@ -7,6 +7,10 @@ const layout = {
   wrapperCol: { span: 20 },
 };
 function Login(props:any) {
+  if(props.isLogin){
+    history.push("/");
+    return null;
+  }
     const onFinish = (values:any)=>{
        props.onLogin({...values})
     }
@@ -41,7 +45,9 @@ function Login(props:any) {
 };
 
 const mapProps = (state:any)=>{
-  return {}
+  return {
+    isLogin:state.login
+  }
 }
 const mapDispatch = (dispatch:any)=>{
   return {

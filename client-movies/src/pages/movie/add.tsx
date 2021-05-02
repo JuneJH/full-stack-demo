@@ -3,8 +3,9 @@ import AddMovie from '@/components/MovieForm'
 import movies from '@/models/movies';
 import { Movie } from '@/commonType/Movie';
 import MovieApi from '@/services/MovieApi';
+import { connect } from 'react-redux';
 
-export default function add(props:any) {
+function add(props:any) {
     return (
         <div style={{
             width:"100%",
@@ -21,3 +22,5 @@ export default function add(props:any) {
         </div>
     )
 }
+add.wrappers = ["@/components/Auto"];
+export default add

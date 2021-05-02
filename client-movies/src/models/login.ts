@@ -1,5 +1,11 @@
 export default {
     state:null,
+    subscriptions:{
+        synchronize({dispatch}:any){
+            const token = window.sessionStorage.getItem("token");
+            dispatch({type:"setToken",payloay:token})
+        }
+    },
     reducers:{
         logout(state:any,aciton:any){
             window.sessionStorage.removeItem("token")
