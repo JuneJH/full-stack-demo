@@ -38,7 +38,7 @@ class MovieForm extends Component<IMovieFormProps & RouteComponentProps> {
                     const result = await this.props.onChange(value);
                     if(result.length === 0){
                         message.success("操作成功",1,()=>{
-                            this.props.history.push("/list")
+                            this.props.history.push("/movie/list")
                         })
                     }else{
                         result.forEach(err=>{
