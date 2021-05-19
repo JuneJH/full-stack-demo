@@ -1,7 +1,8 @@
 import "reflect-metadata";
 import * as express from "express";
 import router from "./api/movie";
-import router4upload from "./api/upload/poster"
+import router4upload from "./api/upload/poster";
+import router4login from './api/login'
 import init from "./db";
 import * as path from "path";
 import * as history from "connect-history-api-fallback";
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use("/api/movie", router);
 app.use("/api/upload", router4upload);
+app.use("/api",router4login)
 
 
 app.listen(9527,(() => console.log(`Server listening`)))

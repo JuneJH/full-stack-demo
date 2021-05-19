@@ -1,3 +1,5 @@
+import MovieApi from "@/services/MovieApi";
+
 export default {
     state:null,
     subscriptions:{
@@ -18,9 +20,10 @@ export default {
     effects:{
         *login({payloay:{username,password}}:any,saga:any):any{
             // 处理登陆的事情
-            if(username === "2019" && password === "123"){
-                yield saga.put({type:"setToken",payloay:"token"});
-                window.sessionStorage.setItem("token","token123");
+            const result = yield saga.call(MovieApi.login,{username,password})
+            if(result.code === 200){
+                yield saga.put({type:"setToken",payloay:result.data.token});
+                window.sessionStorage.setItem("token",result.data.token);
                 return true;
             }
             return false;

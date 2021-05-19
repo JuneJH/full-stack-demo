@@ -9,7 +9,7 @@ export default defineConfig({
   },
   proxy:{
     '/api': {
-      'target': 'http://121.36.51.141:1997/',
+      'target': 'http://127.0.0.1:9527',
       'changeOrigin': true,
       // 'pathRewrite': { '^/api' : '' },
     },
