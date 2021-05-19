@@ -12,7 +12,7 @@ init().then(connection=>{
 })
 const app = express();
 app.use(history());
-app.use("/",express.static(path.resolve(__dirname, "./public/build")));
+app.use("/",express.static(path.resolve(__dirname, "./public/dist")));
 app.use(express.static(path.resolve(__dirname, "./public")));
 
 app.use(express.json());
@@ -22,4 +22,4 @@ app.use("/api/upload", router4upload);
 app.use("/api",router4login)
 
 
-app.listen(9527,(() => console.log(`Server listening`)))
+app.listen(1997,(() => console.log(`Server listening`)))
