@@ -22,4 +22,5 @@ app.use("/api/upload", router4upload);
 app.use("/api",router4login)
 
 
-app.listen(1997,(() => console.log(`Server listening`)))
+app.listen(9527,(() => console.log(`Server listening`)))
+ 
